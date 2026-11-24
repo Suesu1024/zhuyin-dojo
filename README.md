@@ -4,7 +4,7 @@
 
 <p align="center">
   <b>한국인을 위한 대만 주음부호(注音符號) 발음 연습</b><br>
-  <a href="https://USERNAME.github.io/zhuyin-dojo/">▶ 바로 연습하기</a>
+  <a href="https://Suesu1024.github.io/zhuyin-dojo/">▶ 바로 연습하기</a>
 </p>
 
 ---
