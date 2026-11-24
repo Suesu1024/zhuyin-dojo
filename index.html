@@ -1,0 +1,1441 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="한국인을 위한 대만 주음부호(ㄅㄆㄇㄈ) 발음 연습. 기본 37자와 결합운 22가지, 다섯 성조, 일상 단어 105개를 다섯 가지 모드로 익힙니다.">
+<meta name="theme-color" content="#F1F3F6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0C1016" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="logo.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="favicon-180.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ㄅㄆㄇㄈ 발음도장">
+<meta property="og:description" content="한국인을 위한 대만 주음부호 발음 연습">
+<meta property="og:image" content="https://USERNAME.github.io/zhuyin-dojo/og.png">
+<meta property="og:url" content="https://USERNAME.github.io/zhuyin-dojo/">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  /* Claude Artifact 실행 환경이 제공하던 기본 리셋 복원 */
+  :root{
+    color-scheme: light dark;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  html, body{ margin:0 }
+  img{ max-width:100% }
+  [hidden]{ display:none !important }
+</style>
+<title>ㄅㄆㄇㄈ 발음도장</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* 레이아웃: 한 줄짜리 집중형 컬럼. 문제 카드는 대만 교과서처럼 한자 오른쪽에
+   주음을 세로로 세우고 성조 부호를 그 오른쪽에 붙인다. 37개 기호표는
+   조음 위치(성모·개음·운모)별로 색을 나눠 읽는다. */
+:root{
+  /* 색: 푸른기 도는 차가운 종이 바탕 + 역할별 3색(남빛 성모 / 호박 개음 / 자줏빛 운모) */
+  --paper:#F1F3F6; --card:#FAFBFC; --raise:#FFFFFF;
+  --ink:#141820; --ink-2:#4A5362; --ink-3:#7C8696;
+  --line:#D9DEE6; --line-2:#C3CAD5;
+  --r-init:#2A4E9E; --r-init-bg:#E4EAF7;
+  --r-med:#9A6708;  --r-med-bg:#F6EBD5;
+  --r-fin:#8A2E61;  --r-fin-bg:#F6E3EE;
+  --ok:#0D6E55; --ok-soft:#DCEDE7; --ok-line:#86C2AF;
+  --no:#B33521; --no-soft:#F7E2DC; --no-line:#E0A595;
+  --shadow:0 1px 2px rgba(20,24,32,.05), 0 10px 26px -14px rgba(20,24,32,.24);
+  /* 서체: 한자·주음은 명조(Noto Serif TC), UI 한국어는 Noto Sans KR, 병음은 모노 */
+  --f-han:'Noto Serif TC',"Songti TC","PMingLiU",serif;
+  --f-ui:'Noto Sans KR',-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --f-mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --paper:#0C1016; --card:#141A22; --raise:#1A212B;
+    --ink:#E6EBF2; --ink-2:#A2ADBC; --ink-3:#75808F;
+    --line:#242D39; --line-2:#333E4C;
+    --r-init:#89AAEE; --r-init-bg:#16233D;
+    --r-med:#DFAE56;  --r-med-bg:#332814;
+    --r-fin:#DD8CBD;  --r-fin-bg:#361C2C;
+    --ok:#4FC6A4; --ok-soft:#0E2E27; --ok-line:#2A6859;
+    --no:#EE7458; --no-soft:#361A14; --no-line:#7B3B2B;
+    --shadow:0 1px 2px rgba(0,0,0,.42), 0 12px 30px -16px rgba(0,0,0,.72);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --paper:#0C1016; --card:#141A22; --raise:#1A212B;
+  --ink:#E6EBF2; --ink-2:#A2ADBC; --ink-3:#75808F;
+  --line:#242D39; --line-2:#333E4C;
+  --r-init:#89AAEE; --r-init-bg:#16233D;
+  --r-med:#DFAE56;  --r-med-bg:#332814;
+  --r-fin:#DD8CBD;  --r-fin-bg:#361C2C;
+  --ok:#4FC6A4; --ok-soft:#0E2E27; --ok-line:#2A6859;
+  --no:#EE7458; --no-soft:#361A14; --no-line:#7B3B2B;
+  --shadow:0 1px 2px rgba(0,0,0,.42), 0 12px 30px -16px rgba(0,0,0,.72);
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--paper); color:var(--ink);
+  font-family:var(--f-ui); font-size:15px; line-height:1.6; margin:0;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));
+  padding-right:max(16px, env(safe-area-inset-right, 0px));
+  padding-block:0 28px;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:560px; margin:0 auto}
+
+/* ---------- 머리말 ---------- */
+.top{
+  display:flex; align-items:flex-end; justify-content:space-between;
+  gap:14px; padding-block:20px 13px; border-bottom:1px solid var(--line);
+}
+.brand{display:flex; flex-direction:column; gap:2px; min-width:0}
+.brand .mark{
+  font-family:var(--f-han); font-weight:700; font-size:27px;
+  line-height:1; letter-spacing:.04em; color:var(--ink);
+}
+.brand .sub{font-size:10.5px; letter-spacing:.2em; color:var(--ink-3)}
+.score{display:flex; gap:16px; text-align:right}
+.score dl{margin:0}
+.score dt{font-size:10px; letter-spacing:.12em; color:var(--ink-3)}
+.score dd{
+  margin:0; font-family:var(--f-mono); font-variant-numeric:tabular-nums;
+  font-size:18px; font-weight:500; line-height:1.25; color:var(--ink);
+}
+.score dd.hot{color:var(--r-med)}
+
+/* ---------- 모드 ---------- */
+.modes{
+  display:grid; grid-template-columns:repeat(5,1fr); gap:2px; margin-top:13px;
+  background:var(--card); border:1px solid var(--line); border-radius:3px; padding:3px;
+}
+.modes button{
+  min-width:0; appearance:none; cursor:pointer; border:0; border-radius:2px;
+  padding:9px 2px 8px; background:transparent; color:var(--ink-2);
+  font-family:var(--f-ui); font-size:12.5px; font-weight:500;
+  letter-spacing:-.02em; white-space:nowrap;
+  transition:background .15s, color .15s;
+}
+.modes button:hover{color:var(--ink)}
+.modes button[aria-pressed="true"]{background:var(--ink); color:var(--paper); font-weight:700}
+.modes button[disabled]{opacity:.34; cursor:not-allowed}
+
+/* ---------- 문제판 ---------- */
+.stage{
+  margin-top:13px; background:var(--card);
+  border:1px solid var(--line-2); border-radius:3px;
+  box-shadow:var(--shadow); padding:20px 16px 16px; position:relative; overflow:hidden;
+}
+.ask{
+  position:relative; text-align:center; font-size:12px;
+  letter-spacing:.1em; color:var(--ink-3); margin-bottom:12px;
+}
+.promptbox{position:relative; display:grid; place-items:center; min-height:132px}
+
+/* 세로 주음 루비 — 대만 교과서 조판 */
+.ruby{display:flex; flex-wrap:wrap; justify-content:center; gap:.2em; font-size:66px}
+.zi{display:inline-flex; align-items:flex-start; gap:.04em}
+.zi .han{font-family:var(--f-han); font-size:1em; line-height:1.04}
+.zi .zb{
+  position:relative; display:flex; flex-direction:column; align-items:center;
+  font-family:var(--f-han); font-size:.27em; line-height:1.1;
+  padding-top:.5em; padding-right:1em; white-space:nowrap;
+}
+.zi .zb .tn{position:absolute; right:.05em; bottom:0; font-size:1em}
+.zi .zb .dt{position:absolute; left:50%; top:-.35em; transform:translateX(-50%)}
+.ruby.noz .zb{display:none}
+.ruby.sm{font-size:42px}
+
+.bigsym{font-family:var(--f-han); font-size:92px; line-height:1; color:var(--ink)}
+.bigsym.two{font-size:70px; letter-spacing:.02em}
+.cm{color:var(--r-med)}
+.cf{color:var(--r-fin)}
+.bigpy{font-family:var(--f-mono); font-size:40px; line-height:1.15; color:var(--ink); text-align:center}
+.bigko{font-family:var(--f-ui); font-weight:700; font-size:30px; line-height:1.3; text-align:center; letter-spacing:.02em}
+.bignote{font-size:28px}
+
+.subhint{text-align:center; min-height:21px; margin-top:8px; font-size:13px; color:var(--ink-2)}
+.audiobtn{
+  display:block; margin:10px auto 0; cursor:pointer;
+  border:1px solid var(--line-2); background:var(--raise); color:var(--ink-2);
+  border-radius:999px; padding:7px 15px; font-family:var(--f-ui); font-size:13px;
+  transition:border-color .15s, color .15s;
+}
+.audiobtn:hover{border-color:var(--r-init); color:var(--r-init)}
+
+/* 도장 */
+.seal{
+  position:absolute; top:4px; right:0; width:50px; height:50px; border-radius:50%;
+  display:grid; place-items:center; font-family:var(--f-han); font-weight:700; font-size:23px;
+  border:2.5px solid var(--ok); color:var(--ok);
+  opacity:0; transform:rotate(-13deg) scale(1.5); pointer-events:none;
+}
+.seal.no{border-color:var(--no); color:var(--no)}
+.seal.show{animation:stamp .5s cubic-bezier(.2,1.2,.3,1) forwards}
+@keyframes stamp{
+  0%{opacity:0; transform:rotate(-13deg) scale(1.6)}
+  55%{opacity:.95; transform:rotate(-13deg) scale(.94)}
+  100%{opacity:.88; transform:rotate(-13deg) scale(1)}
+}
+
+/* ---------- 보기 ---------- */
+.choices{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:15px}
+.choice{
+  position:relative; appearance:none; cursor:pointer; text-align:center;
+  background:var(--raise); color:var(--ink);
+  border:1px solid var(--line-2); border-radius:3px;
+  padding:13px 9px; min-height:62px;
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--f-mono); font-size:19px; font-weight:500; min-width:0;
+  transition:border-color .12s, background .12s, transform .08s;
+}
+.choice .num{position:absolute; left:7px; top:5px; font-family:var(--f-mono); font-size:10px; color:var(--ink-3)}
+.choice.sym{font-family:var(--f-han); font-size:34px; font-weight:400; line-height:1}
+.choice.zhu{font-family:var(--f-han); font-size:26px; font-weight:400; line-height:1.2; letter-spacing:.04em}
+.choice .tm{color:var(--r-fin); font-size:1.35em; margin-left:.06em}
+.choice.right .tm, .choice.wrong .tm{color:inherit}
+.choice.han{font-family:var(--f-han); font-size:27px; font-weight:400; line-height:1.2}
+.choice.ko{font-family:var(--f-ui); font-size:16px; font-weight:500; line-height:1.35; letter-spacing:-.01em}
+.choice:hover:not(:disabled){border-color:var(--r-init)}
+.choice:active:not(:disabled){transform:translateY(1px)}
+.choice:disabled{cursor:default}
+.choice.right{background:var(--ok-soft); border-color:var(--ok); color:var(--ok)}
+.choice.wrong{background:var(--no-soft); border-color:var(--no); color:var(--no)}
+.choice.dim{opacity:.4}
+.choice:focus-visible{outline:2px solid var(--r-init); outline-offset:2px}
+
+/* ---------- 해설 ---------- */
+.reveal{position:relative; margin-top:14px; padding-top:13px; border-top:1px solid var(--line)}
+.revtop{display:flex; align-items:flex-start; gap:14px; flex-wrap:wrap}
+.revtop .ruby{font-size:40px; justify-content:flex-start}
+.revmeta{flex:1 1 150px; min-width:0}
+.revmeta .py{
+  display:inline-block; font-family:var(--f-mono); font-size:13.5px; color:var(--r-init);
+  border:1px solid var(--r-init); border-radius:2px; padding:1px 7px;
+}
+.revmeta .mean{display:block; margin-top:5px; font-size:15px; font-weight:500}
+.revmeta .rdline{
+  display:block; font-family:var(--f-ui); font-size:13px; font-weight:400;
+  color:var(--ink-2); margin-bottom:2px;
+}
+.revmeta .rdline b{font-family:var(--f-han); font-size:17px; color:var(--r-fin); font-weight:400}
+.revmeta .rdline .alt{font-family:var(--f-mono); font-size:12px; color:var(--ink-3)}
+.reveal p{margin:9px 0 0; font-size:13.5px; color:var(--ink-2)}
+.reveal .tip{
+  margin-top:9px; padding:8px 10px; border-radius:2px;
+  background:var(--r-init-bg); border:1px solid var(--line);
+  font-size:12.5px; color:var(--ink-2); line-height:1.6;
+}
+.tonebox{display:flex; align-items:center; gap:12px; margin-top:10px}
+.tsvg{width:38px; height:46px; flex:none}
+.tsvg line{stroke:var(--line-2); stroke-width:1.5}
+.tsvg polyline{fill:none; stroke:currentColor; stroke-width:2.5; stroke-linecap:round; stroke-linejoin:round}
+.tsvg circle{fill:currentColor}
+.tonebox .tmeta{min-width:0}
+.tonebox .tname{font-weight:700; font-size:14px}
+.tonebox .tdesc{font-size:12.5px; color:var(--ink-2)}
+.nextrow{margin-top:13px}
+.next{
+  width:100%; appearance:none; cursor:pointer; border:0; border-radius:3px;
+  background:var(--ink); color:var(--paper);
+  font-family:var(--f-ui); font-size:14px; font-weight:700; padding:12px; letter-spacing:.04em;
+}
+.next:hover{opacity:.88}
+.next:focus-visible{outline:2px solid var(--r-init); outline-offset:2px}
+
+/* ---------- 범위 ---------- */
+.tools{margin-top:15px}
+.toolhead{
+  display:flex; justify-content:space-between; align-items:center; gap:10px;
+  font-size:11px; letter-spacing:.12em; color:var(--ink-3); margin-bottom:8px;
+}
+.linkbtn{
+  appearance:none; border:0; background:none; cursor:pointer; white-space:nowrap;
+  font-family:var(--f-ui); font-size:12px; letter-spacing:.03em;
+  color:var(--r-init); border-bottom:1px solid var(--r-init); padding:0 0 1px;
+}
+.chips{display:flex; flex-wrap:wrap; gap:6px}
+.chip{
+  appearance:none; cursor:pointer; border-radius:999px;
+  border:1px solid var(--line-2); background:transparent; color:var(--ink-3);
+  font-family:var(--f-ui); font-size:12.5px; padding:6px 13px; transition:all .13s;
+}
+.chip[aria-pressed="true"]{background:var(--r-init-bg); border-color:var(--r-init); color:var(--r-init); font-weight:500}
+.chip .n{font-family:var(--f-mono); font-size:10.5px; opacity:.7; margin-left:4px}
+.note{margin-top:10px; font-size:11.5px; color:var(--ink-3); line-height:1.6}
+.note b{color:var(--ink-2)}
+
+/* ---------- 자료 시트 ---------- */
+.sheet{
+  position:fixed; inset:0; z-index:40; overflow-y:auto; background:var(--paper);
+  padding-left:max(16px, env(safe-area-inset-left, 0px));
+  padding-right:max(16px, env(safe-area-inset-right, 0px));
+  padding-bottom:calc(28px + env(safe-area-inset-bottom, 0px));
+}
+.sheethead{
+  position:sticky; top:env(safe-area-inset-top, 0px); z-index:2;
+  background:var(--paper); border-bottom:1px solid var(--line);
+  display:flex; align-items:center; justify-content:space-between; gap:10px;
+  padding-block:16px 12px;
+}
+.sheethead h2{margin:0; font-family:var(--f-han); font-weight:700; font-size:19px; letter-spacing:.03em}
+.closebtn{
+  appearance:none; cursor:pointer; border:1px solid var(--line-2); background:var(--raise);
+  color:var(--ink-2); border-radius:3px; font-family:var(--f-ui); font-size:13px;
+  padding:7px 13px; white-space:nowrap;
+}
+.closebtn:hover{border-color:var(--r-init); color:var(--r-init)}
+.seg{display:flex; gap:2px; margin-top:13px; background:var(--card); border:1px solid var(--line); border-radius:3px; padding:3px}
+.seg button{
+  flex:1; appearance:none; cursor:pointer; border:0; border-radius:2px; padding:8px;
+  background:transparent; color:var(--ink-2); font-family:var(--f-ui); font-size:13px; font-weight:500;
+}
+.seg button[aria-pressed="true"]{background:var(--ink); color:var(--paper); font-weight:700}
+
+.grouphead{
+  display:flex; align-items:baseline; gap:9px; flex-wrap:wrap;
+  margin:20px 0 8px; padding-bottom:5px; border-bottom:1px solid var(--line);
+}
+.grouphead h3{margin:0; font-family:var(--f-han); font-size:17px; font-weight:700; letter-spacing:.06em}
+.grouphead .kr{font-size:12.5px; color:var(--ink-2); font-weight:500}
+.grouphead .zh{font-size:11px; color:var(--ink-3); font-family:var(--f-han)}
+.cards{display:grid; grid-template-columns:repeat(auto-fill,minmax(164px,1fr)); gap:7px}
+.cards.w{grid-template-columns:repeat(auto-fill,minmax(248px,1fr))}
+.lcard{
+  background:var(--card); border:1px solid var(--line); border-left:3px solid var(--line-2);
+  border-radius:3px; padding:9px 11px; display:flex; gap:11px; align-items:flex-start;
+  cursor:pointer; text-align:left; font-family:var(--f-ui); color:var(--ink); transition:border-color .13s;
+}
+.lcard:hover{border-color:var(--r-init)}
+.lcard.split{display:flex; flex-direction:column; padding:0; cursor:default}
+.lcard .pmain{
+  display:flex; gap:11px; align-items:flex-start; width:100%;
+  padding:9px 11px; background:none; border:0; cursor:pointer;
+  text-align:left; font-family:var(--f-ui); color:var(--ink); font-size:inherit;
+}
+.lcard .exbtn{
+  display:block; width:100%; text-align:left; cursor:pointer;
+  margin-top:auto; padding:6px 11px 7px; background:none; border:0;
+  border-top:1px solid var(--line);
+  font-family:var(--f-han); font-size:11.5px; color:var(--ink-3);
+}
+.lcard .exbtn:hover{color:var(--r-init)}
+.lcard .rd{
+  display:block; margin-top:3px; font-family:var(--f-han);
+  font-size:13px; color:var(--r-fin); letter-spacing:.03em;
+}
+.lcard .rd .alt{font-family:var(--f-mono); font-size:11px; color:var(--ink-3); letter-spacing:0}
+.lcard.comp{border-left-color:var(--r-med)}
+.lcard.comp .g{font-size:25px; min-width:50px}
+.lcard.init{border-left-color:var(--r-init)}
+.lcard.med{border-left-color:var(--r-med)}
+.lcard.fin{border-left-color:var(--r-fin)}
+.lcard .g{font-family:var(--f-han); font-size:30px; line-height:1.1; min-width:32px; text-align:center}
+.lcard.init .g{color:var(--r-init)}
+.lcard.med .g{color:var(--r-med)}
+.lcard.fin .g{color:var(--r-fin)}
+.lcard .g.w{font-size:21px; min-width:52px; text-align:left}
+.lcard .meta{min-width:0; flex:1}
+.lcard .r{font-family:var(--f-mono); font-size:13px; color:var(--ink)}
+.lcard .n{font-size:12px; color:var(--ink-3)}
+.lcard .h{display:block; font-size:11.5px; color:var(--ink-2); margin-top:3px; line-height:1.5}
+.lcard .ex{display:block; margin-top:4px; font-size:11.5px; color:var(--ink-3); font-family:var(--f-han)}
+.bar{display:block; height:3px; border-radius:2px; background:var(--line); margin-top:7px; overflow:hidden}
+.bar i{display:block; height:100%; background:var(--ok); width:0}
+
+/* 성조표 */
+.trow{
+  display:flex; align-items:center; gap:14px; padding:12px 12px;
+  background:var(--card); border:1px solid var(--line); border-radius:3px; margin-bottom:7px;
+}
+.trow .tsvg{color:var(--r-init)}
+.trow .tx{flex:1; min-width:0}
+.trow .th{display:flex; align-items:baseline; gap:8px; flex-wrap:wrap}
+.trow .th b{font-size:15px}
+.trow .th .zh{font-family:var(--f-han); font-size:12.5px; color:var(--ink-3)}
+.trow .th .mk{font-family:var(--f-han); font-size:15px; color:var(--r-fin)}
+.trow .td{font-size:12.5px; color:var(--ink-2); margin-top:2px}
+.trow .tex{
+  margin-top:6px; font-family:var(--f-han); font-size:14px; color:var(--ink);
+  display:flex; align-items:baseline; gap:7px; flex-wrap:wrap;
+}
+.trow .tex small{font-family:var(--f-ui); font-size:11.5px; color:var(--ink-3)}
+.pairs{display:grid; grid-template-columns:repeat(auto-fill,minmax(248px,1fr)); gap:7px}
+.pair{background:var(--card); border:1px solid var(--line); border-radius:3px; padding:10px 12px}
+.pair .pt{font-size:12px; color:var(--ink-3); margin-bottom:5px}
+.pair .pl{display:flex; gap:12px; flex-wrap:wrap}
+.pair .pi{text-align:center}
+.pair .pi b{display:block; font-family:var(--f-han); font-size:22px; font-weight:400; line-height:1.2}
+.pair .pi i{display:block; font-family:var(--f-mono); font-style:normal; font-size:11px; color:var(--r-init)}
+.pair .pi s{display:block; text-decoration:none; font-size:11px; color:var(--ink-3)}
+.legend{font-size:11.5px; color:var(--ink-3); margin-top:16px; line-height:1.7}
+
+@media (max-width:400px){
+  .brand .mark{font-size:23px}
+  .score{gap:12px}
+  .score dd{font-size:16px}
+  .ruby{font-size:54px}
+  .bigsym{font-size:78px}
+  .modes button{font-size:11.5px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms !important; transition-duration:.01ms !important}
+  .seal.show{opacity:.88; transform:rotate(-13deg) scale(1)}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand">
+      <span class="mark">ㄅㄆㄇㄈ</span>
+      <span class="sub">대만 주음부호 연습</span>
+    </div>
+    <div class="score">
+      <dl><dt>연속</dt><dd id="s-streak">0</dd></dl>
+      <dl><dt>정답률</dt><dd id="s-acc">—</dd></dl>
+      <dl><dt>문항</dt><dd id="s-count">0</dd></dl>
+    </div>
+  </header>
+
+  <nav class="modes" id="modes" aria-label="연습 모드">
+    <button type="button" data-mode="sym" aria-pressed="true">주음읽기</button>
+    <button type="button" data-mode="find" aria-pressed="false">주음찾기</button>
+    <button type="button" data-mode="tone" aria-pressed="false">성조</button>
+    <button type="button" data-mode="word" aria-pressed="false">단어</button>
+    <button type="button" data-mode="listen" aria-pressed="false" id="m-listen">듣기</button>
+  </nav>
+
+  <main class="stage">
+    <div class="seal" id="seal" aria-hidden="true">正</div>
+    <p class="ask" id="ask">이 기호는 어떤 소리인가요?</p>
+    <div class="promptbox"><div id="prompt"></div></div>
+    <p class="subhint" id="subhint"></p>
+    <button type="button" class="audiobtn" id="play" hidden>다시 듣기　<span style="opacity:.55">R</span></button>
+
+    <div class="choices" id="choices"></div>
+
+    <div class="reveal" id="reveal" hidden>
+      <div class="revtop">
+        <div id="r-ruby"></div>
+        <div class="revmeta">
+          <span class="py" id="r-py"></span>
+          <span class="mean" id="r-mean"></span>
+        </div>
+      </div>
+      <div class="tonebox" id="r-tonebox" hidden>
+        <div id="r-tsvg"></div>
+        <div class="tmeta">
+          <div class="tname" id="r-tname"></div>
+          <div class="tdesc" id="r-tdesc"></div>
+        </div>
+      </div>
+      <p id="r-desc"></p>
+      <div class="tip" id="r-tip" hidden></div>
+      <div class="nextrow"><button type="button" class="next" id="next">다음 문제　⏎</button></div>
+    </div>
+  </main>
+
+  <section class="tools">
+    <div class="toolhead">
+      <span>출제 범위</span>
+      <button type="button" class="linkbtn" id="openchart">주음표 · 성조 · 단어장</button>
+    </div>
+    <div class="chips" id="chips"></div>
+    <p class="note" id="note">키보드: <b>1–4</b> 선택, <b>Enter</b> 다음 문제.</p>
+  </section>
+</div>
+
+<div class="sheet" id="sheet" hidden>
+  <div class="wrap">
+    <div class="sheethead">
+      <h2 id="sheettitle">注音符號表</h2>
+      <button type="button" class="closebtn" id="closechart">닫기　Esc</button>
+    </div>
+    <div class="seg" id="seg">
+      <button type="button" data-view="sym" aria-pressed="true">주음 37</button>
+      <button type="button" data-view="tone" aria-pressed="false">성조</button>
+      <button type="button" data-view="word" aria-pressed="false">단어장</button>
+    </div>
+    <div id="chartbody"></div>
+    <p class="legend" id="legend"></p>
+  </div>
+</div>
+
+<script>
+(function(){
+"use strict";
+
+/* ==========================================================
+   주음부호 37자 — 대만 교육부 순서, 조음 위치별 묶음
+   형식: 기호|병음|한글 근사음|설명|예시한자|예시주음|예시병음|예시뜻
+   ========================================================== */
+var GROUPS = [
+  {id:'g1', role:'init', zh:'ㄅㄆㄇㄈ', kr:'입술소리', note:'雙脣·脣齒音', raw:[
+    'ㄅ|b|ㅃ|성대를 울리지 않고 바람도 내보내지 않는 소리. 한국어 ㅂ보다 ㅃ에 가깝다|八|ㄅㄚ|bā|8',
+    'ㄆ|p|ㅍ|ㄅ와 입모양은 같고 바람을 강하게 터뜨린다|怕|ㄆㄚˋ|pà|무섭다',
+    'ㄇ|m|ㅁ|한국어 ㅁ과 거의 같다|馬|ㄇㄚˇ|mǎ|말',
+    'ㄈ|f|(없음)|윗니로 아랫입술을 살짝 물고 내는 영어 f. ㅎ나 ㅍ로 바꾸면 안 된다|飯|ㄈㄢˋ|fàn|밥'
+  ]},
+  {id:'g2', role:'init', zh:'ㄉㄊㄋㄌ', kr:'혀끝소리', note:'舌尖音', raw:[
+    'ㄉ|d|ㄸ|혀끝을 윗잇몸에 붙였다 떼되 바람은 내보내지 않는다|大|ㄉㄚˋ|dà|크다',
+    'ㄊ|t|ㅌ|ㄉ와 같은 자리에서 바람을 세게 터뜨린다|他|ㄊㄚ|tā|그(사람)',
+    'ㄋ|n|ㄴ|한국어 ㄴ과 거의 같다|你|ㄋㄧˇ|nǐ|너',
+    'ㄌ|l|ㄹ|혀끝을 윗잇몸에 대고 떼지 않는 영어 l. 받침 ㄹ에 가깝다|來|ㄌㄞˊ|lái|오다'
+  ]},
+  {id:'g3', role:'init', zh:'ㄍㄎㄏ', kr:'혀뿌리소리', note:'舌根音', raw:[
+    'ㄍ|g|ㄲ|혀뿌리를 올려 막았다 떼되 바람은 내보내지 않는다|狗|ㄍㄡˇ|gǒu|개',
+    'ㄎ|k|ㅋ|ㄍ와 같은 자리에서 바람을 세게 터뜨린다|看|ㄎㄢˋ|kàn|보다',
+    'ㄏ|h|ㅎ|한국어 ㅎ보다 목 안쪽에서 긁듯이 낸다|好|ㄏㄠˇ|hǎo|좋다'
+  ]},
+  {id:'g4', role:'init', zh:'ㄐㄑㄒ', kr:'혓바닥소리', note:'舌面音 — 뒤에 ㄧ·ㄩ만 온다', raw:[
+    'ㄐ|j|ㅈ|입을 옆으로 벌리고 혓바닥을 입천장에 붙여 내는 ㅈ. 한국어 "지"의 ㅈ|家|ㄐㄧㄚ|jiā|집',
+    'ㄑ|q|ㅊ|ㄐ와 같은 자리에서 바람을 세게 내보낸다|去|ㄑㄩˋ|qù|가다',
+    'ㄒ|x|ㅅ|한국어 "시"의 ㅅ처럼 입을 옆으로 벌리고 낸다|謝|ㄒㄧㄝˋ|xiè|고맙다'
+  ]},
+  {id:'g5', role:'init', zh:'ㄓㄔㄕㄖ', kr:'혀말이소리', note:'翹舌音 — 한국인이 가장 어려워하는 자리', raw:[
+    'ㄓ|zh|ㅉ|혀끝을 입천장 쪽으로 말아 올린 채 내는 ㅉ. 한국어에 없는 소리|知|ㄓ|zhī|알다',
+    'ㄔ|ch|ㅊ|ㄓ와 같이 혀를 말아 올리고 바람을 세게 터뜨린다|吃|ㄔ|chī|먹다',
+    'ㄕ|sh|ㅅ|혀를 말아 올린 ㅅ. 영어 sh보다 혀가 더 뒤로 간다|是|ㄕˋ|shì|~이다',
+    'ㄖ|r|(없음)|혀를 말아 올린 채 성대를 울린다. 영어 r과 ㄹ의 중간|熱|ㄖㄜˋ|rè|덥다'
+  ]},
+  {id:'g6', role:'init', zh:'ㄗㄘㄙ', kr:'혀평평소리', note:'平舌音 — ㄓㄔㄕ와 짝을 이루어 외운다', raw:[
+    'ㄗ|z|ㅉ|혀끝을 윗니 뒤에 평평하게 붙였다 떼는 ㅉ. 혀를 말지 않는다|早|ㄗㄠˇ|zǎo|이르다',
+    'ㄘ|c|ㅊ|ㄗ와 같은 자리에서 바람을 세게 내보낸다|菜|ㄘㄞˋ|cài|요리·채소',
+    'ㄙ|s|ㅅ|한국어 "스"의 ㅅ. 혀를 말지 않는다|三|ㄙㄢ|sān|3'
+  ]},
+  {id:'g7', role:'med', zh:'ㄧㄨㄩ', kr:'개음(반모음)', note:'介音 — 성모와 운모 사이에 들어간다', raw:[
+    'ㄧ|i / y|ㅣ|한국어 ㅣ. 단독으로 쓰면 yi로 적는다|一|ㄧ|yī|1',
+    'ㄨ|u / w|ㅜ|입술을 둥글게 한 ㅜ. 단독으로 쓰면 wu로 적는다|五|ㄨˇ|wǔ|5',
+    'ㄩ|ü / yu|ㅟ(단모음)|ㅜ 입모양을 그대로 두고 ㅣ를 발음한다. 독일어 ü|魚|ㄩˊ|yú|물고기'
+  ]},
+  {id:'g8', role:'fin', zh:'ㄚㄛㄜㄝ', kr:'단모음', note:'單韻', raw:[
+    'ㄚ|a|ㅏ|입을 크게 벌린 ㅏ|他|ㄊㄚ|tā|그(사람)',
+    'ㄛ|o|ㅗ|입술을 둥글게 한 ㅗ. ㄅㄆㄇㄈ 뒤에 주로 붙는다|我|ㄨㄛˇ|wǒ|나',
+    'ㄜ|e|ㅡ~ㅓ|ㅡ와 ㅓ의 중간. 입을 반쯤 벌리고 혀를 중간 높이에 둔다|喝|ㄏㄜ|hē|마시다',
+    'ㄝ|ê|ㅔ|한국어 ㅔ. 보통 ㄧㄝ·ㄩㄝ 형태로 쓰인다|謝|ㄒㄧㄝˋ|xiè|고맙다'
+  ]},
+  {id:'g9', role:'fin', zh:'ㄞㄟㄠㄡ', kr:'이중모음', note:'複韻', raw:[
+    'ㄞ|ai|ㅏ이|ㅏ에서 ㅣ로 미끄러진다|愛|ㄞˋ|ài|사랑하다',
+    'ㄟ|ei|ㅔ이|ㅔ에서 ㅣ로 미끄러진다|誰|ㄕㄟˊ|shéi|누구',
+    'ㄠ|ao|ㅏ오|ㅏ에서 ㅗ로 미끄러진다|好|ㄏㄠˇ|hǎo|좋다',
+    'ㄡ|ou|ㅗ우|ㅗ에서 ㅜ로 미끄러진다|有|ㄧㄡˇ|yǒu|있다'
+  ]},
+  {id:'g10', role:'fin', zh:'ㄢㄣㄤㄥ', kr:'비음 운미', note:'聲隨韻 — 받침 ㄴ·ㅇ에 해당', raw:[
+    'ㄢ|an|안|혀끝을 윗잇몸에 붙여 끝낸다|安|ㄢ|ān|편안하다',
+    'ㄣ|en|언|ㄜ 뒤에 받침 ㄴ. 입을 작게 벌린다|人|ㄖㄣˊ|rén|사람',
+    'ㄤ|ang|앙|입을 크게 벌리고 받침 ㅇ으로 끝낸다|糖|ㄊㄤˊ|táng|설탕',
+    'ㄥ|eng|엉|혀끝을 어디에도 대지 않고 콧소리로 끝낸다|冷|ㄌㄥˇ|lěng|춥다'
+  ]},
+  {id:'g11', role:'fin', zh:'ㄦ', kr:'혀말이 운모', note:'捲舌韻', raw:[
+    'ㄦ|er|얼|ㄜ를 내면서 혀끝을 말아 올린다|二|ㄦˋ|èr|2'
+  ]}
+];
+
+/* 呼讀音 — 대만에서 주음부호를 소리 내어 읽을 때의 이름.
+   ㄅ는 "ㄅㄛ(bo)", ㄆ는 "ㄆㄛ(po)" 처럼 읽는다. 음가(b, p)와는 다르다.
+   [呼讀音 주음, 병음, 읽어 주기용 동음 한자, (보충 설명)] */
+var READ = {
+  'ㄅ':['ㄅㄛ','bo','波'],   'ㄆ':['ㄆㄛ','po','坡'],   'ㄇ':['ㄇㄛ','mo','摸'],   'ㄈ':['ㄈㄛ','fo','佛'],
+  'ㄉ':['ㄉㄜ','de','德'],   'ㄊ':['ㄊㄜ','te','特'],   'ㄋ':['ㄋㄜ','ne','訥'],   'ㄌ':['ㄌㄜ','le','勒'],
+  'ㄍ':['ㄍㄜ','ge','哥'],   'ㄎ':['ㄎㄜ','ke','科'],   'ㄏ':['ㄏㄜ','he','喝'],
+  'ㄐ':['ㄐㄧ','ji','雞'],   'ㄑ':['ㄑㄧ','qi','七'],   'ㄒ':['ㄒㄧ','xi','西'],
+  'ㄓ':['ㄓ','zhi','知'],    'ㄔ':['ㄔ','chi','吃'],    'ㄕ':['ㄕ','shi','詩'],   'ㄖ':['ㄖ','ri','日'],
+  'ㄗ':['ㄗ','zi','資'],     'ㄘ':['ㄘ','ci','次'],     'ㄙ':['ㄙ','si','司'],
+  'ㄧ':['ㄧ','yi','衣'],     'ㄨ':['ㄨ','wu','烏'],     'ㄩ':['ㄩ','yu','迂'],
+  'ㄚ':['ㄚ','a','啊'],      'ㄛ':['ㄛ','o','喔'],      'ㄜ':['ㄜ','e','鵝'],
+  /* ㄝ·ㄟ·ㄥ 은 국어에서 홀로 한 글자를 이루지 못한다.
+     억지 동음자를 읽히면 엉뚱한 소리가 나므로, 확실히 읽히는 글자로 들려 주고
+     어느 부분을 들어야 하는지 명시한다. */
+  'ㄝ':['ㄝ','ê','耶','홀로 쓰이는 한자가 없습니다 — 耶(ㄧㄝ)의 ㄝ 부분을 들으세요'],
+  'ㄞ':['ㄞ','ai','哀'],
+  'ㄟ':['ㄟ','ei','杯','홀로 쓰이는 한자가 없습니다 — 杯(ㄅㄟ)의 ㄟ 부분을 들으세요'],
+  'ㄠ':['ㄠ','ao','凹'],    'ㄡ':['ㄡ','ou','歐'],
+  'ㄢ':['ㄢ','an','安'],     'ㄣ':['ㄣ','en','恩'],     'ㄤ':['ㄤ','ang','昂'],
+  'ㄥ':['ㄥ','eng','風','홀로 쓰이는 한자가 없습니다 — 風(ㄈㄥ)의 ㄥ 부분을 들으세요'],
+  'ㄦ':['ㄦ','er','兒']
+};
+
+/* ==========================================================
+   結合韻 — 介音(ㄧㄨㄩ) + 韻母 가 붙어 한 덩어리로 쓰이는 22가지.
+   형식: 주음|단독 병음|자음 뒤 병음|한글 근사음|설명|예시한자|예시주음|예시병음|예시뜻|읽어주기 한자
+   '—' 는 해당 없음. 끝에 '*' 가 붙은 줄은 현대에 거의 안 쓰여 출제에서 뺀다.
+   ========================================================== */
+var COMP_GROUPS = [
+  {id:'g12', zh:'ㄧ 結合韻', kr:'ㅣ 계열', note:'介音 ㄧ + 韻母', raw:[
+    'ㄧㄚ|ya|-ia|야|ㅣ에서 ㅏ로 미끄러진다|鴨|ㄧㄚ|yā|오리|鴨',
+    'ㄧㄛ|yo|—|요|감탄사에만 남아 있는 드문 소리|唷|ㄧㄛ|yō|어이쿠|唷*',
+    'ㄧㄝ|ye|-ie|예|ㅣ+ㅔ. ㄝ 가 실제로 쓰이는 거의 유일한 자리|也|ㄧㄝˇ|yě|~도|耶',
+    'ㄧㄞ|yai|—|야이|옛 독음에만 남아 있다|崖|ㄧㄞˊ|yái|벼랑|崖*',
+    'ㄧㄠ|yao|-iao|야오|ㅣ+ㅏ오|要|ㄧㄠˋ|yào|원하다|腰',
+    'ㄧㄡ|you|-iu|이우|자음 뒤에서 병음이 -iu 로 줄지만 주음은 그대로다|有|ㄧㄡˇ|yǒu|있다|優',
+    'ㄧㄢ|yan|-ian|옌|글자는 an 이지만 실제 소리는 "옌"에 가깝다|天|ㄊㄧㄢ|tiān|하늘|煙',
+    'ㄧㄣ|yin|-in|인|ㅣ+받침 ㄴ|新|ㄒㄧㄣ|xīn|새롭다|因',
+    'ㄧㄤ|yang|-iang|양|ㅣ+앙|想|ㄒㄧㄤˇ|xiǎng|생각하다|央',
+    'ㄧㄥ|ying|-ing|잉|ㅣ+받침 ㅇ. 혀끝을 대지 않는다|明|ㄇㄧㄥˊ|míng|밝다|英'
+  ]},
+  {id:'g13', zh:'ㄨ 結合韻', kr:'ㅜ 계열', note:'介音 ㄨ + 韻母', raw:[
+    'ㄨㄚ|wa|-ua|와|ㅜ에서 ㅏ로 미끄러진다|花|ㄏㄨㄚ|huā|꽃|蛙',
+    'ㄨㄛ|wo|-uo|워|ㅜ+ㅗ. 한국어 "워"에 가깝다|我|ㄨㄛˇ|wǒ|나|窩',
+    'ㄨㄞ|wai|-uai|와이|ㅜ+ㅏ이|外|ㄨㄞˋ|wài|밖|歪',
+    'ㄨㄟ|wei|-ui|웨이|자음 뒤에서 병음이 -ui 로 줄지만 주음은 그대로다|會|ㄏㄨㄟˋ|huì|할 수 있다|威',
+    'ㄨㄢ|wan|-uan|완|ㅜ+안|晚|ㄨㄢˇ|wǎn|저녁|彎',
+    'ㄨㄣ|wen|-un|원|자음 뒤에서 병음이 -un 으로 준다|問|ㄨㄣˋ|wèn|묻다|溫',
+    'ㄨㄤ|wang|-uang|왕|ㅜ+앙|王|ㄨㄤˊ|wáng|왕|汪',
+    'ㄨㄥ|weng|-ong|웡 / 옹|홀로 쓰면 weng, 자음 뒤에서는 -ong 이 된다. 주음은 한 가지|東|ㄉㄨㄥ|dōng|동쪽|翁'
+  ]},
+  {id:'g14', zh:'ㄩ 結合韻', kr:'ㅟ 계열', note:'介音 ㄩ + 韻母 — ㄐㄑㄒ 와 ㄋㄌ 뒤에만 온다', raw:[
+    'ㄩㄝ|yue|-üe|위에|ㅟ 입모양에서 ㅔ로|月|ㄩㄝˋ|yuè|달|約',
+    'ㄩㄢ|yuan|-üan|위엔|ㄧㄢ 과 마찬가지로 끝이 "엔"에 가깝다|元|ㄩㄢˊ|yuán|으뜸·위안|冤',
+    'ㄩㄣ|yun|-ün|윈|ㅟ+받침 ㄴ|運|ㄩㄣˋ|yùn|운·운행|暈',
+    'ㄩㄥ|yong|-iong|융|ㅟ+받침 ㅇ|用|ㄩㄥˋ|yòng|쓰다|雍'
+  ]}
+];
+
+var ROLE = {
+  init:{key:'init', label:'성모', zh:'聲母', n:0},
+  med: {key:'med',  label:'개음', zh:'介音', n:0},
+  fin: {key:'fin',  label:'운모', zh:'韻母', n:0},
+  comp:{key:'comp', label:'결합운', zh:'結合韻', n:0}
+};
+var SYMS = [];
+GROUPS.forEach(function(g){
+  g.items = g.raw.map(function(line){
+    var p = line.split('|');
+    var rd = READ[p[0]] || [p[0], p[1], p[4], ''];
+    var it = {ch:p[0], py:p[1], ko:p[2], desc:p[3],
+              exH:p[4], exZ:p[5], exP:p[6], exM:p[7],
+              read:rd[0], readPy:rd[1], say:rd[2], readNote:rd[3] || '',
+              role:g.role, gid:g.id, gkr:g.kr};
+    SYMS.push(it);
+    return it;
+  });
+  ROLE[g.role].n += g.items.length;
+  delete g.raw;
+});
+COMP_GROUPS.forEach(function(g){
+  g.role = 'comp';
+  g.items = g.raw.map(function(line){
+    var p = line.split('|');
+    var say = p[9], rare = false;
+    if (say.slice(-1) === '*'){ rare = true; say = say.slice(0, -1); }
+    var it = {ch:p[0], py:p[1], alt:p[2], ko:p[3], desc:p[4],
+              exH:p[5], exZ:p[6], exP:p[7], exM:p[8],
+              read:p[0], readPy:p[1], say:say, readNote:'', rare:rare,
+              role:'comp', gid:g.id, gkr:g.kr};
+    SYMS.push(it);
+    return it;
+  });
+  ROLE.comp.n += g.items.length;
+  delete g.raw;
+  GROUPS.push(g);
+});
+
+/* ==========================================================
+   성조 — 五度標記法(조원임 성조 표기)의 높낮이 값
+   ========================================================== */
+var TONES = [
+  {n:1, mark:'',  name:'제1성', zh:'第一聲', val:'55',  contour:[5,5],
+   desc:'높은 음에서 평평하게 끌고 간다. 대만에서는 부호를 붙이지 않는다',
+   ex:{h:'媽', z:'ㄇㄚ', p:'mā', m:'엄마'}},
+  {n:2, mark:'ˊ', name:'제2성', zh:'第二聲', val:'35',  contour:[3,5],
+   desc:'중간에서 위로 끌어올린다. 되묻는 "네?" 의 억양',
+   ex:{h:'麻', z:'ㄇㄚˊ', p:'má', m:'삼·저리다'}},
+  {n:3, mark:'ˇ', name:'제3성', zh:'第三聲', val:'214', contour:[2,1,4],
+   desc:'낮게 눌렀다가 끝에서 살짝 올린다. 실제 대화에서는 내리는 부분만 내는 일이 많다',
+   ex:{h:'馬', z:'ㄇㄚˇ', p:'mǎ', m:'말'}},
+  {n:4, mark:'ˋ', name:'제4성', zh:'第四聲', val:'51',  contour:[5,1],
+   desc:'높은 데서 아래로 뚝 떨어뜨린다. 단호하게 "야!" 하는 느낌',
+   ex:{h:'罵', z:'ㄇㄚˋ', p:'mà', m:'꾸짖다'}},
+  {n:0, mark:'˙', name:'경성', zh:'輕聲', val:'높이 고정 없음', contour:[3],
+   desc:'짧고 가볍게. 대만에서는 점을 음절 **앞**에 찍는다 (˙ㄇㄚ)',
+   ex:{h:'嗎', z:'˙ㄇㄚ', p:'ma', m:'~입니까?'}}
+];
+var TONE_MARKS = ['', 'ˊ', 'ˇ', 'ˋ'];
+
+var PAIRS = [
+  {t:'ㄇㄚ — 성조만 다른 네 글자', l:[['媽','mā','엄마'],['麻','má','삼'],['馬','mǎ','말'],['罵','mà','꾸짖다']]},
+  {t:'ㄊㄤ — 식당에서 자주 쓰는 짝', l:[['湯','tāng','국'],['糖','táng','설탕'],['躺','tǎng','눕다'],['燙','tàng','뜨겁다']]},
+  {t:'ㄇㄞ — 3성과 4성이 정반대 뜻', l:[['買','mǎi','사다'],['賣','mài','팔다']]},
+  {t:'ㄕㄨㄟ — 묻는 말과 물', l:[['誰','shéi','누구'],['水','shuǐ','물']]}
+];
+
+/* ==========================================================
+   일상 단어 — 대만 국어 기준 (正體字)
+   형식: 한자|주음|병음|뜻|분류
+   ========================================================== */
+var CATS = [
+  {id:'greet',  label:'인사·기본'},
+  {id:'people', label:'사람·가족'},
+  {id:'num',    label:'숫자·시간'},
+  {id:'food',   label:'먹을거리'},
+  {id:'place',  label:'장소·교통'},
+  {id:'act',    label:'동작·상태'}
+];
+var WORDS_RAW = [
+'你好|ㄋㄧˇ ㄏㄠˇ|nǐ hǎo|안녕하세요|greet',
+'謝謝|ㄒㄧㄝˋ ˙ㄒㄧㄝ|xiè xie|고맙습니다|greet',
+'對不起|ㄉㄨㄟˋ ㄅㄨˋ ㄑㄧˇ|duì bù qǐ|죄송합니다|greet',
+'不好意思|ㄅㄨˋ ㄏㄠˇ ㄧˋ ˙ㄙ|bù hǎo yì si|실례합니다·죄송해요|greet',
+'沒關係|ㄇㄟˊ ㄍㄨㄢ ˙ㄒㄧ|méi guān xi|괜찮아요|greet',
+'再見|ㄗㄞˋ ㄐㄧㄢˋ|zài jiàn|안녕히 가세요|greet',
+'早安|ㄗㄠˇ ㄢ|zǎo ān|좋은 아침|greet',
+'請|ㄑㄧㄥˇ|qǐng|~해 주세요|greet',
+'是|ㄕˋ|shì|~이다·네|greet',
+'好|ㄏㄠˇ|hǎo|좋다|greet',
+'加油|ㄐㄧㄚ ㄧㄡˊ|jiā yóu|힘내|greet',
+'歡迎|ㄏㄨㄢ ㄧㄥˊ|huān yíng|환영합니다|greet',
+'我|ㄨㄛˇ|wǒ|나|people',
+'你|ㄋㄧˇ|nǐ|너|people',
+'他|ㄊㄚ|tā|그|people',
+'她|ㄊㄚ|tā|그녀|people',
+'我們|ㄨㄛˇ ˙ㄇㄣ|wǒ men|우리|people',
+'爸爸|ㄅㄚˋ ˙ㄅㄚ|bà ba|아빠|people',
+'媽媽|ㄇㄚ ˙ㄇㄚ|mā ma|엄마|people',
+'哥哥|ㄍㄜ ˙ㄍㄜ|gē ge|형·오빠|people',
+'姐姐|ㄐㄧㄝˇ ˙ㄐㄧㄝ|jiě jie|누나·언니|people',
+'弟弟|ㄉㄧˋ ˙ㄉㄧ|dì di|남동생|people',
+'妹妹|ㄇㄟˋ ˙ㄇㄟ|mèi mei|여동생|people',
+'朋友|ㄆㄥˊ ㄧㄡˇ|péng yǒu|친구|people',
+'老師|ㄌㄠˇ ㄕ|lǎo shī|선생님|people',
+'學生|ㄒㄩㄝˊ ㄕㄥ|xué shēng|학생|people',
+'名字|ㄇㄧㄥˊ ˙ㄗ|míng zi|이름|people',
+'一|ㄧ|yī|1|num',
+'二|ㄦˋ|èr|2|num',
+'三|ㄙㄢ|sān|3|num',
+'四|ㄙˋ|sì|4|num',
+'五|ㄨˇ|wǔ|5|num',
+'六|ㄌㄧㄡˋ|liù|6|num',
+'七|ㄑㄧ|qī|7|num',
+'八|ㄅㄚ|bā|8|num',
+'九|ㄐㄧㄡˇ|jiǔ|9|num',
+'十|ㄕˊ|shí|10|num',
+'今天|ㄐㄧㄣ ㄊㄧㄢ|jīn tiān|오늘|num',
+'明天|ㄇㄧㄥˊ ㄊㄧㄢ|míng tiān|내일|num',
+'昨天|ㄗㄨㄛˊ ㄊㄧㄢ|zuó tiān|어제|num',
+'現在|ㄒㄧㄢˋ ㄗㄞˋ|xiàn zài|지금|num',
+'時間|ㄕˊ ㄐㄧㄢ|shí jiān|시간|num',
+'星期|ㄒㄧㄥ ㄑㄧˊ|xīng qí|주·요일|num',
+'早上|ㄗㄠˇ ˙ㄕㄤ|zǎo shang|아침|num',
+'晚上|ㄨㄢˇ ˙ㄕㄤ|wǎn shang|저녁|num',
+'吃|ㄔ|chī|먹다|food',
+'喝|ㄏㄜ|hē|마시다|food',
+'水|ㄕㄨㄟˇ|shuǐ|물|food',
+'茶|ㄔㄚˊ|chá|차|food',
+'飯|ㄈㄢˋ|fàn|밥|food',
+'麵|ㄇㄧㄢˋ|miàn|국수|food',
+'肉|ㄖㄡˋ|ròu|고기|food',
+'蛋|ㄉㄢˋ|dàn|달걀|food',
+'菜|ㄘㄞˋ|cài|요리·채소|food',
+'便當|ㄅㄧㄢˋ ㄉㄤ|biàn dāng|도시락|food',
+'珍珠奶茶|ㄓㄣ ㄓㄨ ㄋㄞˇ ㄔㄚˊ|zhēn zhū nǎi chá|버블티|food',
+'鳳梨|ㄈㄥˋ ㄌㄧˊ|fèng lí|파인애플|food',
+'水果|ㄕㄨㄟˇ ㄍㄨㄛˇ|shuǐ guǒ|과일|food',
+'好吃|ㄏㄠˇ ㄔ|hǎo chī|맛있다|food',
+'咖啡|ㄎㄚ ㄈㄟ|kā fēi|커피|food',
+'早餐|ㄗㄠˇ ㄘㄢ|zǎo cān|아침밥|food',
+'夜市|ㄧㄝˋ ㄕˋ|yè shì|야시장|food',
+'家|ㄐㄧㄚ|jiā|집|place',
+'學校|ㄒㄩㄝˊ ㄒㄧㄠˋ|xué xiào|학교|place',
+'公司|ㄍㄨㄥ ㄙ|gōng sī|회사|place',
+'醫院|ㄧ ㄩㄢˋ|yī yuàn|병원|place',
+'捷運|ㄐㄧㄝˊ ㄩㄣˋ|jié yùn|지하철|place',
+'公車|ㄍㄨㄥ ㄔㄜ|gōng chē|버스|place',
+'計程車|ㄐㄧˋ ㄔㄥˊ ㄔㄜ|jì chéng chē|택시|place',
+'機車|ㄐㄧ ㄔㄜ|jī chē|스쿠터|place',
+'便利商店|ㄅㄧㄢˋ ㄌㄧˋ ㄕㄤ ㄉㄧㄢˋ|biàn lì shāng diàn|편의점|place',
+'廁所|ㄘㄜˋ ㄙㄨㄛˇ|cè suǒ|화장실|place',
+'台灣|ㄊㄞˊ ㄨㄢ|tái wān|대만|place',
+'台北|ㄊㄞˊ ㄅㄟˇ|tái běi|타이베이|place',
+'韓國|ㄏㄢˊ ㄍㄨㄛˊ|hán guó|한국|place',
+'哪裡|ㄋㄚˇ ㄌㄧˇ|nǎ lǐ|어디|place',
+'這裡|ㄓㄜˋ ㄌㄧˇ|zhè lǐ|여기|place',
+'多少錢|ㄉㄨㄛ ㄕㄠˇ ㄑㄧㄢˊ|duō shǎo qián|얼마예요|place',
+'去|ㄑㄩˋ|qù|가다|act',
+'來|ㄌㄞˊ|lái|오다|act',
+'看|ㄎㄢˋ|kàn|보다|act',
+'聽|ㄊㄧㄥ|tīng|듣다|act',
+'說|ㄕㄨㄛ|shuō|말하다|act',
+'買|ㄇㄞˇ|mǎi|사다|act',
+'賣|ㄇㄞˋ|mài|팔다|act',
+'要|ㄧㄠˋ|yào|원하다|act',
+'有|ㄧㄡˇ|yǒu|있다|act',
+'沒有|ㄇㄟˊ ㄧㄡˇ|méi yǒu|없다|act',
+'喜歡|ㄒㄧˇ ㄏㄨㄢ|xǐ huān|좋아하다|act',
+'知道|ㄓ ㄉㄠˋ|zhī dào|알다|act',
+'會|ㄏㄨㄟˋ|huì|할 수 있다|act',
+'想|ㄒㄧㄤˇ|xiǎng|하고 싶다|act',
+'大|ㄉㄚˋ|dà|크다|act',
+'小|ㄒㄧㄠˇ|xiǎo|작다|act',
+'多|ㄉㄨㄛ|duō|많다|act',
+'少|ㄕㄠˇ|shǎo|적다|act',
+'很|ㄏㄣˇ|hěn|매우|act',
+'冷|ㄌㄥˇ|lěng|춥다|act',
+'熱|ㄖㄜˋ|rè|덥다|act',
+'累|ㄌㄟˋ|lèi|피곤하다|act',
+'快|ㄎㄨㄞˋ|kuài|빠르다|act',
+'慢|ㄇㄢˋ|màn|느리다|act',
+'貴|ㄍㄨㄟˋ|guì|비싸다|act',
+'便宜|ㄆㄧㄢˊ ㄧˊ|pián yí|싸다|act',
+'漂亮|ㄆㄧㄠˋ ㄌㄧㄤˋ|piào liàng|예쁘다|act'
+];
+var WORDS = WORDS_RAW.map(function(line){
+  var p = line.split('|');
+  var h = p[0];
+  return {h:h, z:p[1], py:p[2], m:p[3], cat:p[4],
+          /* 一은 뒤 글자에 따라 성조가 바뀌므로(變調) 성조 연습에서 뺀다 */
+          one:Array.from(h).length === 1 && h !== '一'};
+});
+var CATN = {};
+CATS.forEach(function(c){ CATN[c.id] = 0; });
+WORDS.forEach(function(w){ CATN[w.cat]++; });
+
+/* 대만식 특이 어휘 — 해설에 덧붙이는 메모 */
+var WORD_TIP = {
+  '捷運':'대만에서만 쓰는 말. 중국 대륙에서는 地鐵(dìtiě)라고 한다.',
+  '計程車':'대만식 표현. 중국 대륙에서는 出租車(chūzūchē).',
+  '機車':'대만 생활 필수 단어. 오토바이·스쿠터를 가리킨다. 사람을 두고 機車라고 하면 "까다롭다"는 속어가 된다.',
+  '便當':'일본어 弁当에서 온 말. 대만 어디서나 볼 수 있는 도시락.',
+  '鳳梨':'대만식. 중국 대륙에서는 菠蘿(bōluó).',
+  '星期':'期를 대만에서는 ㄑㄧˊ(qí), 중국 대륙에서는 qī로 읽는다.',
+  '不好意思':'대만에서 하루에도 몇 번씩 쓰는 말. 사과보다 가벼운 "실례지만" 쪽에 가깝다.',
+  '珍珠奶茶':'대만에서 태어난 음료. 줄여서 珍奶(ㄓㄣ ㄋㄞˇ)라고도 한다.',
+  '夜市':'대만 야시장. 士林夜市(ㄕˋ ㄌㄧㄣˊ)가 가장 유명하다.',
+  '不好吃':'',
+  '多少錢':'가격을 물을 때 쓰는 통째 외우는 표현.'
+};
+
+/* ============ 상태 ============ */
+var STORE_KEY = 'zhuyin-dojo-v1';
+var state = {
+  mode:'sym',
+  roleScope:{init:true, med:true, fin:true, comp:true},
+  catScope:{greet:true, people:true, num:true, food:true, place:true, act:true},
+  chartView:'sym',
+  streak:0, best:0, count:0, right:0,
+  q:null, locked:false
+};
+var mastery = {};
+
+function load(){
+  try{
+    var raw = localStorage.getItem(STORE_KEY);
+    if (!raw) return;
+    var o = JSON.parse(raw);
+    if (o && o.mastery) mastery = o.mastery;
+    if (o && o.roleScope) Object.keys(state.roleScope).forEach(function(k){
+      if (typeof o.roleScope[k] === 'boolean') state.roleScope[k] = o.roleScope[k];
+    });
+    if (o && o.catScope) Object.keys(state.catScope).forEach(function(k){
+      if (typeof o.catScope[k] === 'boolean') state.catScope[k] = o.catScope[k];
+    });
+    if (o && typeof o.best === 'number') state.best = o.best;
+  }catch(e){}
+}
+function save(){
+  try{
+    localStorage.setItem(STORE_KEY, JSON.stringify({
+      mastery:mastery, roleScope:state.roleScope, catScope:state.catScope, best:state.best
+    }));
+  }catch(e){}
+}
+function record(key, ok){
+  var m = mastery[key] || (mastery[key] = {n:0, r:0});
+  m.n++; if (ok) m.r++;
+  if (m.n > 12){ m.n = Math.round(m.n * 0.6); m.r = Math.round(m.r * 0.6); }
+  save();
+}
+
+/* ============ 도구 ============ */
+function $(id){ return document.getElementById(id); }
+function pick(a){ return a[Math.floor(Math.random() * a.length)]; }
+function shuffle(a){
+  for (var i = a.length - 1; i > 0; i--){
+    var j = Math.floor(Math.random() * (i + 1)), t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+function weightedPickBy(pool, keyFn){
+  var bag = [];
+  pool.forEach(function(it){
+    var m = mastery[keyFn(it)], w = 3;
+    if (m && m.n >= 2){ var acc = m.r / m.n; w = acc > 0.85 ? 1 : (acc > 0.6 ? 3 : 5); }
+    for (var i = 0; i < w; i++) bag.push(it);
+  });
+  return pick(bag);
+}
+function symPool(){
+  var p = SYMS.filter(function(s){ return state.roleScope[s.role] && !s.rare; });
+  return p.length ? p : SYMS.filter(function(s){ return !s.rare; });
+}
+/* 結合韻은 介音(호박색) + 韻母(자주색) 로 나눠 칠해 구조가 보이게 한다 */
+function glyphHTML(it){
+  if (it.role !== 'comp') return it.ch;
+  var a = Array.from(it.ch);
+  return '<span class="cm">' + a[0] + '</span><span class="cf">' + a.slice(1).join('') + '</span>';
+}
+function wordPool(){
+  var p = WORDS.filter(function(w){ return state.catScope[w.cat]; });
+  return p.length ? p : WORDS.slice();
+}
+function tonePool(){
+  var p = wordPool().filter(function(w){ return w.one; });
+  if (p.length >= 6) return p;
+  return WORDS.filter(function(w){ return w.one; });
+}
+
+/* ============ 주음 조판 ============ */
+function parseSyl(s){
+  var dot = false, tone = '';
+  if (s.charAt(0) === '˙'){ dot = true; s = s.slice(1); }
+  var last = s.charAt(s.length - 1);
+  if ('ˊˇˋ'.indexOf(last) >= 0 && last !== ''){ tone = last; s = s.slice(0, -1); }
+  return {sym:s, tone:tone, dot:dot};
+}
+/* 한자 오른쪽에 주음을 세로로, 성조는 그 오른쪽 아래에, 경성 점은 위에 */
+function rubyHTML(han, zhu, cls){
+  var syls = (zhu || '').trim().split(/\s+/);
+  var out = '<div class="ruby' + (cls ? ' ' + cls : '') + '">';
+  Array.from(han).forEach(function(c, i){
+    var p = parseSyl(syls[i] || '');
+    var col = '';
+    Array.from(p.sym).forEach(function(z){ col += '<span>' + z + '</span>'; });
+    out += '<span class="zi"><span class="han">' + c + '</span><span class="zb">' + col +
+      (p.tone ? '<span class="tn">' + p.tone + '</span>' : '') +
+      (p.dot ? '<span class="dt">˙</span>' : '') + '</span></span>';
+  });
+  return out + '</div>';
+}
+/* 五度標記法 — 1(낮음)~5(높음) 다섯 단계 높낮이 그래프 */
+function toneSVG(contour){
+  var y = function(l){ return 42 - (l - 1) * 9; };
+  var inner;
+  if (contour.length === 1){
+    inner = '<circle cx="16" cy="' + y(contour[0]) + '" r="2.6"/>' +
+            '<polyline points="9,' + y(contour[0]) + ' 23,' + y(contour[0]) + '"/>';
+  } else {
+    var step = 24 / (contour.length - 1);
+    inner = '<polyline points="' + contour.map(function(l, i){
+      return (6 + i * step).toFixed(1) + ',' + y(l);
+    }).join(' ') + '"/>';
+  }
+  return '<svg class="tsvg" viewBox="0 0 40 48" aria-hidden="true">' +
+         '<line x1="34" y1="6" x2="34" y2="42"/>' + inner + '</svg>';
+}
+/* 보기에서 성조 부호만 크게·색으로 도드라지게 (textContent 는 그대로 유지) */
+function zhuOptHTML(s){
+  var p = parseSyl(s);
+  return (p.dot ? '<span class="tm">˙</span>' : '') + p.sym +
+         (p.tone ? '<span class="tm">' + p.tone + '</span>' : '');
+}
+/* 성조 부호만 떼어낸 병음 — 어느 음절인지는 알려주되 성조는 감춘다 */
+function stripTone(py){
+  return py.normalize('NFD').replace(/[̄́̌̀]/g, '').normalize('NFC');
+}
+
+/* ============ 음성 ============ */
+var zhVoice = null, ttsOK = false;
+function findVoice(){
+  try{
+    if (!('speechSynthesis' in window)) return;
+    var vs = window.speechSynthesis.getVoices() || [];
+    var tw = null, any = null;
+    vs.forEach(function(v){
+      var lg = v.lang || '';
+      if (/^zh[-_]?(TW|Hant)/i.test(lg) && !tw) tw = v;
+      else if (/^zh/i.test(lg) && !any) any = v;
+    });
+    zhVoice = tw || any;
+    var now = !!zhVoice;
+    if (now !== ttsOK){ ttsOK = now; updateAudioUI(); }
+  }catch(e){}
+}
+function speak(text){
+  if (!ttsOK || !text) return;
+  try{
+    window.speechSynthesis.cancel();
+    var u = new SpeechSynthesisUtterance(text);
+    u.voice = zhVoice; u.lang = zhVoice.lang || 'zh-TW'; u.rate = 0.78;
+    window.speechSynthesis.speak(u);
+  }catch(e){}
+}
+function updateAudioUI(){
+  $('m-listen').disabled = !ttsOK;
+  $('note').innerHTML = ttsOK
+    ? '키보드: <b>1–4</b> 선택, <b>Enter</b> 다음 문제, <b>R</b> 다시 듣기.'
+    : '키보드: <b>1–4</b> 선택, <b>Enter</b> 다음 문제. 이 기기에 중국어 음성이 없어 「듣기」는 쓸 수 없습니다. 나머지 모드는 그대로 쓸 수 있어요.';
+  if (!ttsOK && state.mode === 'listen') setMode('sym');
+  syncModes();
+}
+try{
+  if ('speechSynthesis' in window){
+    findVoice();
+    window.speechSynthesis.onvoiceschanged = findVoice;
+    setTimeout(findVoice, 400); setTimeout(findVoice, 1500);
+  }
+}catch(e){}
+
+/* ============ 출제 ============ */
+function distract(pool, target, keyFn, answer, sameFn){
+  var seen = {}; seen[answer] = 1;
+  var out = [answer];
+  var take = function(list){
+    shuffle(list.slice()).forEach(function(x){
+      var k = keyFn(x);
+      if (out.length < 4 && !seen[k]){ seen[k] = 1; out.push(k); }
+    });
+  };
+  if (sameFn) take(pool.filter(function(x){ return sameFn(x) && keyFn(x) !== answer; }));
+  take(pool.filter(function(x){ return keyFn(x) !== answer; }));
+  return shuffle(out);
+}
+
+function symQuestion(){
+  var pool = symPool();
+  var t = weightedPickBy(pool, function(x){ return x.ch; });
+  return {
+    mode:'sym', key:t.ch, sym:t,
+    ask:'이 기호는 어떤 소리인가요?',
+    promptHTML:'<div class="bigsym' + (Array.from(t.ch).length > 1 ? ' two' : '') + '">' +
+               glyphHTML(t) + '</div>',
+    answer:t.py,
+    options:distract(pool, t, function(x){ return x.py; }, t.py,
+                     function(x){ return x.gid === t.gid; }),
+    optionClass:'',
+    audio:t.say
+  };
+}
+function findQuestion(){
+  var pool = symPool();
+  var t = weightedPickBy(pool, function(x){ return x.ch; });
+  return {
+    mode:'find', key:t.ch, sym:t,
+    ask:'이 소리를 적는 기호는?',
+    promptHTML:'<div class="bigpy">' + t.py + '</div>',
+    hint:t.ko === '(없음)' ? '한국어에 없는 소리입니다' : '한국어로는 ' + t.ko + '에 가깝습니다',
+    answer:t.ch,
+    options:distract(pool, t, function(x){ return x.ch; }, t.ch,
+                     function(x){ return x.gid === t.gid; }),
+    optionClass:'sym',
+    audio:t.say
+  };
+}
+function toneQuestion(){
+  var pool = tonePool();
+  var t = weightedPickBy(pool, function(x){ return x.h; });
+  var base = parseSyl(t.z.trim());
+  var opts = TONE_MARKS.map(function(m){ return base.sym + m; });
+  if (opts.indexOf(t.z.trim()) === -1) opts[0] = t.z.trim();
+  return {
+    mode:'tone', key:t.h, word:t,
+    ask:'이 글자의 성조는?',
+    promptHTML:rubyHTML(t.h, t.z, 'noz'),
+    hint:stripTone(t.py) + ' · 뜻 ' + t.m,
+    answer:t.z.trim(),
+    options:shuffle(opts.slice(0, 4)),
+    optionClass:'zhu',
+    optHTML:zhuOptHTML,
+    audio:t.h
+  };
+}
+function wordQuestion(){
+  var pool = wordPool();
+  var t = weightedPickBy(pool, function(x){ return x.h; });
+  var roll = Math.random();
+  var q = {mode:'word', key:t.h, word:t, audio:t.h};
+  if (roll < 0.42){
+    q.ask = '이 단어의 뜻은?';
+    q.promptHTML = rubyHTML(t.h, t.z, 'noz');
+    q.answer = t.m;
+    q.options = distract(pool, t, function(x){ return x.m; }, t.m,
+                         function(x){ return x.cat === t.cat; });
+    q.optionClass = 'ko';
+  } else if (roll < 0.75){
+    q.ask = '이 뜻을 가진 단어는?';
+    q.promptHTML = '<div class="bigko">' + t.m + '</div>';
+    q.answer = t.h;
+    q.options = distract(pool, t, function(x){ return x.h; }, t.h,
+                         function(x){ return x.cat === t.cat; });
+    q.optionClass = 'han';
+  } else {
+    q.ask = '이 단어의 주음 표기는?';
+    q.promptHTML = rubyHTML(t.h, t.z, 'noz');
+    q.answer = t.z;
+    q.options = distract(pool, t, function(x){ return x.z; }, t.z,
+                         function(x){ return Array.from(x.h).length === Array.from(t.h).length; });
+    q.optionClass = 'zhu';
+  }
+  return q;
+}
+function listenQuestion(){
+  var pool = wordPool();
+  var t = weightedPickBy(pool, function(x){ return x.h; });
+  return {
+    mode:'listen', key:t.h, word:t,
+    ask:'들린 단어는 어느 것인가요?',
+    promptHTML:'<div class="bigsym bignote">♪</div>',
+    answer:t.h,
+    options:distract(pool, t, function(x){ return x.h; }, t.h,
+                     function(x){ return x.cat === t.cat; }),
+    optionClass:'han',
+    audio:t.h
+  };
+}
+function makeQuestion(){
+  switch (state.mode){
+    case 'find':   return findQuestion();
+    case 'tone':   return toneQuestion();
+    case 'word':   return wordQuestion();
+    case 'listen': return listenQuestion();
+    default:       return symQuestion();
+  }
+}
+
+/* ============ 화면 ============ */
+function render(){
+  var q = state.q;
+  state.locked = false;
+  $('ask').textContent = q.ask;
+  $('reveal').hidden = true;
+  $('seal').className = 'seal';
+  $('prompt').innerHTML = q.promptHTML;
+  $('subhint').textContent = q.hint || '';
+  $('play').hidden = !(ttsOK && q.audio);
+
+  var box = $('choices');
+  box.innerHTML = '';
+  q.options.forEach(function(opt, i){
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'choice ' + (q.optionClass || '');
+    var n = document.createElement('span');
+    n.className = 'num'; n.textContent = String(i + 1);
+    var t = document.createElement('span');
+    if (q.optHTML) t.innerHTML = q.optHTML(opt); else t.textContent = opt;
+    b.appendChild(n); b.appendChild(t);
+    b.addEventListener('click', function(){ answer(opt, b); });
+    box.appendChild(b);
+  });
+
+  if (q.mode === 'listen') setTimeout(function(){ speak(q.audio); }, 260);
+}
+
+function answer(value, btn){
+  if (state.locked) return;
+  state.locked = true;
+  var q = state.q, ok = (value === q.answer);
+
+  state.count++;
+  if (ok){ state.right++; state.streak++; if (state.streak > state.best) state.best = state.streak; }
+  else state.streak = 0;
+  record(q.key, ok);
+  updateScore();
+
+  var seal = $('seal');
+  seal.textContent = ok ? '正' : '再';
+  seal.className = 'seal show' + (ok ? '' : ' no');
+
+  Array.prototype.forEach.call($('choices').children, function(el){
+    var label = el.lastChild.textContent;
+    el.disabled = true;
+    if (label === q.answer) el.classList.add('right');
+    else if (el === btn) el.classList.add('wrong');
+    else el.classList.add('dim');
+  });
+
+  var tone = $('r-tonebox');
+  tone.hidden = true;
+  $('r-tip').hidden = true;
+
+  if (q.sym){
+    var s = q.sym;
+    $('r-ruby').innerHTML = '<div class="ruby sm"><span class="zi"><span class="han">' +
+      glyphHTML(s) + '</span></span></div>';
+    $('r-py').textContent = s.py;
+    $('r-mean').innerHTML =
+      (s.role === 'comp'
+        ? (s.alt && s.alt !== '—'
+            ? '<span class="rdline">자음 뒤에서는 <span class="alt">' + s.alt + '</span> — 주음 표기는 그대로</span>'
+            : '')
+        : '<span class="rdline">읽는 법 <b>' + s.read + '</b> ' + s.readPy + '</span>') +
+      (s.ko === '(없음)' ? '한국어에 없는 소리' : '한국어 ' + s.ko + '에 가까움');
+    $('r-desc').textContent = s.desc + '.';
+    $('r-tip').innerHTML = '<b>' + s.gkr + '</b> · ' + ROLE[s.role].label +
+      '　예시 ' + rubyInline(s.exH, s.exZ) + ' ' + s.exP + ' — ' + s.exM +
+      (s.readNote ? '<br>' + s.readNote : '');
+    $('r-tip').hidden = false;
+  } else {
+    var w = q.word;
+    $('r-ruby').innerHTML = rubyHTML(w.h, w.z);
+    $('r-py').textContent = w.py;
+    $('r-mean').textContent = w.m;
+    $('r-desc').textContent = '';
+    if (q.mode === 'tone'){
+      var mk = parseSyl(w.z.trim()).tone;
+      var dot = w.z.trim().charAt(0) === '˙';
+      var tn = TONES.filter(function(x){ return dot ? x.n === 0 : x.mark === mk; })[0] || TONES[0];
+      $('r-tsvg').innerHTML = toneSVG(tn.contour);
+      $('r-tname').textContent = tn.name + '（' + tn.zh + '）　' + tn.val;
+      $('r-tdesc').textContent = tn.desc.replace(/\*\*/g, '');
+      tone.hidden = false;
+    }
+    var tip = WORD_TIP[w.h];
+    if (tip){ $('r-tip').textContent = tip; $('r-tip').hidden = false; }
+  }
+  $('reveal').hidden = false;
+  if (q.mode !== 'listen') speak(q.audio);
+  $('next').focus({preventScroll:true});
+}
+function rubyInline(han, zhu){
+  return han + ' ' + zhu;
+}
+
+function nextQ(){ state.q = makeQuestion(); render(); }
+function updateScore(){
+  $('s-streak').textContent = state.streak;
+  $('s-streak').className = state.streak >= 5 ? 'hot' : '';
+  $('s-count').textContent = state.count;
+  $('s-acc').textContent = state.count ? Math.round(state.right / state.count * 100) + '%' : '—';
+}
+function setMode(m){
+  if (m === 'listen' && !ttsOK) return;
+  state.mode = m;
+  syncModes(); renderChips(); nextQ();
+}
+function syncModes(){
+  Array.prototype.forEach.call($('modes').children, function(b){
+    b.setAttribute('aria-pressed', b.dataset.mode === state.mode ? 'true' : 'false');
+  });
+}
+
+/* ============ 범위 칩 ============ */
+function usesWords(){ return state.mode === 'word' || state.mode === 'listen' || state.mode === 'tone'; }
+function renderChips(){
+  var box = $('chips');
+  box.innerHTML = '';
+  if (usesWords()){
+    CATS.forEach(function(c){
+      box.appendChild(chipEl(c.label, CATN[c.id], state.catScope[c.id], function(){
+        var on = CATS.filter(function(x){ return state.catScope[x.id]; });
+        if (state.catScope[c.id] && on.length === 1) return;
+        state.catScope[c.id] = !state.catScope[c.id];
+        save(); renderChips(); nextQ();
+      }));
+    });
+    return;
+  }
+  ['init','med','fin'].forEach(function(k){
+    var r = ROLE[k];
+    box.appendChild(chipEl(r.label + ' ' + r.zh, r.n, state.roleScope[k], function(){
+      var on = ['init','med','fin'].filter(function(x){ return state.roleScope[x]; });
+      if (state.roleScope[k] && on.length === 1) return;
+      state.roleScope[k] = !state.roleScope[k];
+      save(); renderChips(); nextQ();
+    }));
+  });
+}
+function chipEl(label, n, on, fn){
+  var b = document.createElement('button');
+  b.type = 'button'; b.className = 'chip';
+  b.setAttribute('aria-pressed', on ? 'true' : 'false');
+  b.innerHTML = label + '<span class="n">' + n + '</span>';
+  b.addEventListener('click', fn);
+  return b;
+}
+
+/* ============ 자료 시트 ============ */
+function renderChart(){
+  var v = state.chartView;
+  $('sheettitle').textContent = v === 'sym' ? '注音符號表' : (v === 'tone' ? '聲調表' : '常用單字');
+  $('legend').innerHTML =
+    v === 'sym' ? '왼쪽 색 띠는 역할을 나타냅니다 — <b>남색 성모</b>, <b>황색 개음</b>, <b>자주색 운모</b>, 結合韻은 介音+韻母 를 각각의 색으로 칠했습니다. 카드 윗부분을 누르면 대만 사람이 부호를 읽는 소리(<b>呼讀音</b>: ㄅ→ㄅㄛ)를, 아래 「例」 줄을 누르면 예시 단어를 들려 줍니다. 음가(b)와 읽는 법(ㄅㄛ)은 다르다는 점에 주의하세요.<br>ㄝ·ㄟ·ㄥ 은 국어에서 홀로 한 글자를 이루지 못해, 확실히 읽히는 글자로 들려 주고 어느 부분을 들어야 하는지 카드에 적어 두었습니다. 結合韻은 모두 홀로 설 수 있어 소리가 정확합니다.'
+  : v === 'tone' ? '그래프는 조원임(趙元任)의 五度標記法으로, 1이 가장 낮고 5가 가장 높습니다. 오른쪽 세로 선이 음높이 기준선입니다. 카드를 누르면 읽어 줍니다.'
+  : '카드를 누르면 읽어 줍니다. 주음은 한자 오른쪽에 세로로 적고, 성조 부호는 그 오른쪽에 붙입니다. 경성 점은 대만식으로 음절 <b>앞</b>에 찍습니다.';
+  Array.prototype.forEach.call($('seg').children, function(b){
+    b.setAttribute('aria-pressed', b.dataset.view === v ? 'true' : 'false');
+  });
+  if (v === 'sym') renderSymChart();
+  else if (v === 'tone') renderToneChart();
+  else renderWordChart();
+}
+function headEl(zh, kr, note){
+  var h = document.createElement('div');
+  h.className = 'grouphead';
+  h.innerHTML = '<h3>' + zh + '</h3><span class="kr">' + kr + '</span><span class="zh">' + note + '</span>';
+  return h;
+}
+function barHTML(key){
+  var m = mastery[key];
+  var pct = (m && m.n) ? Math.round(m.r / m.n * 100) : 0;
+  return '<span class="bar"><i style="width:' + pct + '%"></i></span>';
+}
+function renderSymChart(){
+  var body = $('chartbody');
+  body.innerHTML = '';
+  GROUPS.forEach(function(g){
+    body.appendChild(headEl(g.zh, g.kr, g.note));
+    var grid = document.createElement('div');
+    grid.className = 'cards' + (g.role === 'comp' ? ' w' : '');
+    g.items.forEach(function(it){
+      var c = document.createElement('div');
+      c.className = 'lcard split ' + it.role;
+      c.innerHTML =
+        '<button type="button" class="pmain">' +
+          '<span class="g"></span><span class="meta">' +
+            '<span class="r"></span> <span class="n"></span>' +
+            '<span class="rd"></span><span class="h"></span>' + barHTML(it.ch) +
+          '</span></button>' +
+        '<button type="button" class="exbtn"></button>';
+      c.querySelector('.g').innerHTML = glyphHTML(it);
+      c.querySelector('.r').textContent = it.py;
+      c.querySelector('.n').textContent = it.ko === '(없음)' ? '한국어에 없음' : it.ko;
+      var rdEl = c.querySelector('.rd');
+      if (it.role === 'comp'){
+        /* 結合韻은 음가와 읽는 법이 같으므로 되풀이하지 않고 병음 변화만 적는다 */
+        var bits = [];
+        if (it.alt && it.alt !== '—') bits.push('자음 뒤 <span class="alt">' + it.alt + '</span>');
+        if (it.rare) bits.push('<span class="alt">드물게 쓰임</span>');
+        if (bits.length) rdEl.innerHTML = bits.join(' · '); else rdEl.remove();
+      } else {
+        rdEl.innerHTML = '읽는 법 ' + it.read + '　' + it.readPy;
+      }
+      c.querySelector('.h').textContent = it.desc + (it.readNote ? '. ' + it.readNote : '');
+      var ex = c.querySelector('.exbtn');
+      ex.textContent = '例  ' + it.exH + ' ' + it.exZ + '　' + it.exP + ' · ' + it.exM;
+      c.querySelector('.pmain').addEventListener('click', function(){ speak(it.say); });
+      ex.addEventListener('click', function(){ speak(it.exH); });
+      grid.appendChild(c);
+    });
+    body.appendChild(grid);
+  });
+}
+function renderToneChart(){
+  var body = $('chartbody');
+  body.innerHTML = '';
+  body.appendChild(headEl('五個聲調', '다섯 가지 성조', '높낮이가 뜻을 바꾼다'));
+  TONES.forEach(function(t){
+    var row = document.createElement('button');
+    row.type = 'button'; row.className = 'trow';
+    row.style.cssText = 'width:100%; text-align:left; cursor:pointer; font-family:var(--f-ui); color:var(--ink)';
+    row.innerHTML =
+      toneSVG(t.contour) +
+      '<span class="tx">' +
+        '<span class="th"><b>' + t.name + '</b><span class="zh">' + t.zh + '</span>' +
+        '<span class="mk">' + (t.mark || '(부호 없음)') + '</span><span class="zh">' + t.val + '</span></span>' +
+        '<span class="td"></span>' +
+        '<span class="tex">' + t.ex.h + ' ' + t.ex.z + ' <small>' + t.ex.p + ' · ' + t.ex.m + '</small></span>' +
+      '</span>';
+    row.querySelector('.td').innerHTML = t.desc.replace(/\*\*(.+?)\*\*/g, '<b>$1</b>');
+    row.addEventListener('click', function(){ speak(t.ex.h); });
+    body.appendChild(row);
+  });
+  body.appendChild(headEl('最小對立組', '성조만 다른 짝', '뜻이 완전히 달라진다'));
+  var pg = document.createElement('div');
+  pg.className = 'pairs';
+  PAIRS.forEach(function(p){
+    var d = document.createElement('div');
+    d.className = 'pair';
+    var items = p.l.map(function(x){
+      return '<span class="pi"><b>' + x[0] + '</b><i>' + x[1] + '</i><s>' + x[2] + '</s></span>';
+    }).join('');
+    d.innerHTML = '<div class="pt">' + p.t + '</div><div class="pl">' + items + '</div>';
+    d.querySelectorAll('.pi').forEach(function(el, i){
+      el.style.cursor = 'pointer';
+      el.addEventListener('click', function(){ speak(p.l[i][0]); });
+    });
+    pg.appendChild(d);
+  });
+  body.appendChild(pg);
+}
+function renderWordChart(){
+  var body = $('chartbody');
+  body.innerHTML = '';
+  CATS.forEach(function(c){
+    body.appendChild(headEl(c.label, CATN[c.id] + '개', ''));
+    var grid = document.createElement('div');
+    grid.className = 'cards w';
+    WORDS.filter(function(w){ return w.cat === c.id; }).forEach(function(w){
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'lcard';
+      b.innerHTML = '<span class="g w"></span><span class="meta">' +
+        '<span class="r"></span> <span class="n"></span><span class="h"></span>' + barHTML(w.h) + '</span>';
+      b.querySelector('.g').textContent = w.h;
+      b.querySelector('.r').textContent = w.py;
+      b.querySelector('.n').textContent = w.m;
+      b.querySelector('.h').textContent = w.z;
+      b.addEventListener('click', function(){ speak(w.h); });
+      grid.appendChild(b);
+    });
+    body.appendChild(grid);
+  });
+}
+function openChart(){
+  state.chartView = usesWords() ? (state.mode === 'tone' ? 'tone' : 'word') : 'sym';
+  renderChart();
+  $('sheet').hidden = false;
+  document.body.style.overflow = 'hidden';
+}
+function closeChart(){ $('sheet').hidden = true; document.body.style.overflow = ''; }
+
+/* ============ 이벤트 ============ */
+$('modes').addEventListener('click', function(e){
+  var b = e.target.closest('button[data-mode]');
+  if (b && !b.disabled) setMode(b.dataset.mode);
+});
+$('next').addEventListener('click', nextQ);
+$('play').addEventListener('click', function(){ speak(state.q && state.q.audio); });
+$('openchart').addEventListener('click', openChart);
+$('closechart').addEventListener('click', closeChart);
+$('seg').addEventListener('click', function(e){
+  var b = e.target.closest('button[data-view]');
+  if (!b) return;
+  state.chartView = b.dataset.view;
+  renderChart();
+  window.scrollTo(0, 0);
+});
+document.addEventListener('keydown', function(e){
+  if (e.metaKey || e.ctrlKey || e.altKey) return;
+  if (!$('sheet').hidden){ if (e.key === 'Escape') closeChart(); return; }
+  if (e.key === 'Enter' || e.key === ' '){
+    if (state.locked){ e.preventDefault(); nextQ(); }
+    return;
+  }
+  if (e.key === 'r' || e.key === 'R'){ speak(state.q && state.q.audio); return; }
+  var n = parseInt(e.key, 10);
+  if (n >= 1 && n <= 4 && !state.locked){
+    var el = $('choices').children[n - 1];
+    if (el) el.click();
+  }
+});
+
+/* ============ 시작 ============ */
+function start(snap){
+  load();
+  if (snap && typeof snap === 'object'){
+    if (typeof snap.count === 'number') state.count = snap.count;
+    if (typeof snap.right === 'number') state.right = snap.right;
+    if (typeof snap.streak === 'number') state.streak = snap.streak;
+    if (snap.mode && snap.mode !== 'listen') state.mode = snap.mode;
+  }
+  syncModes(); renderChips(); updateScore(); updateAudioUI(); nextQ();
+}
+try{
+  if (window.claude && window.claude.hot && window.claude.hot.snapshot){
+    window.claude.hot.snapshot(function(){
+      return {count:state.count, right:state.right, streak:state.streak, mode:state.mode};
+    });
+  }
+}catch(e){}
+if (window.claude && window.claude.hot && window.claude.hot.ready){
+  window.claude.hot.ready(start);
+} else {
+  start((window.claude && window.claude.hot && window.claude.hot.data) || {});
+}
+})();
+</script>
+</body>
+</html>
